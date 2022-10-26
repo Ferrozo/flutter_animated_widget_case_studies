@@ -35,23 +35,30 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black,
-      body: Center(
-        child: AnimatedContainer(
-          height: _height,
-          width: _width,
-          decoration: BoxDecoration(
-            color: _containerColor,
-            borderRadius: _containerBorderRadius,
+    return AnimatedContainer(
+      // height: _height,
+      // width: _width,
+      color: _containerColor,
+
+      duration: const Duration(seconds: 5),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: Center(
+          child: AnimatedContainer(
+            height: _height,
+            width: _width,
+            decoration: BoxDecoration(
+              borderRadius: _containerBorderRadius,
+              color: Colors.black,
+            ),
+            duration: const Duration(seconds: 5),
           ),
-          duration: const Duration(seconds: 2),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: _containerColor,
-        onPressed: () => _randomShape(),
-        child: const Icon(Icons.dynamic_feed),
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: _containerColor,
+          onPressed: () => _randomShape(),
+          child: const Icon(Icons.dynamic_feed),
+        ),
       ),
     );
   }
