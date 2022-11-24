@@ -16,8 +16,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    _arrowAnimationController =
-        AnimationController(vsync: this, duration: Duration(seconds: 1));
+    _arrowAnimationController = AnimationController(
+        vsync: this, duration: const Duration(microseconds: 300));
     _arrowAnimation = Tween(
       begin: 0.0,
       end: pi,
@@ -27,21 +27,37 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: <Widget>[],
+      body: Center(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            firstAnimation(),
+          ],
+        ),
       ),
     );
   }
 
   Widget firstAnimation() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Column(
+      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        AnimatedBuilder(
-          animation: _arrowAnimationController,
-          builder: (context, child) => Transform.rotate(
-            angle: _arrowAnimation.value,
-            child: const Icon(Icons.expand_more),
+        Container(
+          height: 60,
+          width: 60,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(50),
+            color: Colors.black,
+          ),
+          child: AnimatedBuilder(
+            animation: _arrowAnimationController,
+            builder: (context, child) => Transform.rotate(
+                angle: _arrowAnimation.value,
+                child: const Icon(
+                  Icons.expand_less,
+                  color: Colors.white,
+                )),
           ),
         ),
         TextButton(
@@ -50,7 +66,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   ? _arrowAnimationController.reverse()
                   : _arrowAnimationController.forward();
             },
-            child: const Text('Test ?'))
+            child: const Text('Click Me !'))
       ],
     );
   }
