@@ -26,6 +26,12 @@ class _AngleAnimationState extends State<AngleAnimation>
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    _arrowAnimationController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       // mainAxisAlignment: MainAxisAlignment.spaceBetween,

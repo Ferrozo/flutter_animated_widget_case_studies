@@ -27,25 +27,39 @@ class _HeartBeatState extends State<HeartBeat> with TickerProviderStateMixin {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    _heartAnimationController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
       children: [
         Expanded(
-          child: AnimatedBuilder(
-            animation: _heartAnimationController,
-            builder: (context, child) {
-              return Center(
-                child: SizedBox(
-                  child: Center(
-                    child: Icon(
-                      Icons.favorite,
-                      color: Colors.red,
-                      size: _heartAnimation.value,
+          child: Container(
+            height: _heartAnimation.value + 60,
+            width: _heartAnimation.value + 60,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(50),
+              color: Colors.black,
+            ),
+            child: AnimatedBuilder(
+              animation: _heartAnimationController,
+              builder: (context, child) {
+                return Center(
+                  child: SizedBox(
+                    child: Center(
+                      child: Icon(
+                        Icons.favorite,
+                        color: Colors.red,
+                        size: _heartAnimation.value,
+                      ),
                     ),
                   ),
-                ),
-              );
-            },
+                );
+              },
+            ),
           ),
         ),
         Expanded(
